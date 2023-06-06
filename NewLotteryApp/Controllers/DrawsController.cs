@@ -1,11 +1,7 @@
-﻿using NewLotteryApp.Data;
+﻿using Microsoft.AspNetCore.Mvc;
+using NewLotteryApp.Data;
 using NewLotteryApp.Data.Entities;
 using NewLotteryApp.Models;
-using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace NewLotteryApp.Controllers
 {
@@ -24,7 +20,7 @@ namespace NewLotteryApp.Controllers
         {
             var result = _drawRepository.Get(id);
 
-            if(result == null)
+            if (result == null)
             {
                 return NotFound("The draw not found");
             }
@@ -56,9 +52,9 @@ namespace NewLotteryApp.Controllers
         {
             try
             {
-               return Ok(_drawRepository.DrawMethod());
+                return Ok(_drawRepository.DrawMethod());
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -71,7 +67,7 @@ namespace NewLotteryApp.Controllers
             var drawHistory = new DrawHistory()
             {
                 DrawDateTime = DateTime.Now,
-                Draw = string.Join(",",drawRequest.Draw)
+                Draw = string.Join(",", drawRequest.Draw)
             };
 
             if (_drawRepository.SaveDraw(drawHistory))
