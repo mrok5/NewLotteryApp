@@ -1,0 +1,6 @@
+<h1>Let's play</h1>
+<p>It will be draw 5 number from 1-50</p>
+
+<p aria-live="polite">Current draw: <strong (change)="lottery.SaveDrawNumbers(lottery.drawNumbers)">{{ lottery.drawNumbers }}</strong></p>
+
+<button class="btn btn-primary" (click)="lottery.draw()">{{ lottery.label }}</button>

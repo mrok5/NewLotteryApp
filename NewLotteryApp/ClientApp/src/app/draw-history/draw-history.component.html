@@ -1,0 +1,22 @@
+<h1 id="tableLabel">Draw History</h1>
+
+<p *ngIf="!lottery"><em>Loading...</em></p>
+
+<table class='table table-striped' aria-labelledby="tableLabel" *ngIf="lottery">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>DateTime</th>
+      <th>Draw</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let element of lottery.drawHistory">
+      <td>{{ element.id }}</td>
+      <td>{{ element.drawDateTime | date:'medium'}}</td>
+      <td>{{ element.draw }}</td>
+    </tr>
+  </tbody>
+</table>
+
+
