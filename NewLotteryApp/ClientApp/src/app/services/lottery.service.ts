@@ -8,9 +8,9 @@ import { DrawHistory } from "../models/DrawHistory";
 export class Lottery {
   constructor(private http: HttpClient) { }
 
-  public drawHistory: DrawHistory[];
-  public drawNumbers: number[];
-  public saveResponse;
+  public drawHistory: DrawHistory[] = [];
+  public drawNumbers: number[] = [];
+  public saveResponse: any;
   public baseURL = "/api/draws/";
   public label = "Draw";
 
@@ -29,7 +29,7 @@ export class Lottery {
   callback() {
     var drawHistory = new DrawHistory();
     drawHistory.draw = this.drawNumbers;
-    this.SaveDrawNumbers(drawHistory)
+    this.SaveDrawNumbers(drawHistory.draw)
     this.label = "Draw again";
   }
 
@@ -49,7 +49,7 @@ export class Lottery {
       }));
   }
 
-  SaveDrawNumbers(drawHistory: DrawHistory){
+  SaveDrawNumbers(drawHistory: number[]){
     console.log(JSON.stringify(drawHistory));
     return this.http.post(this.baseURL + "SaveDraw", drawHistory)
       .subscribe(
